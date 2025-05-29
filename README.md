@@ -164,13 +164,14 @@ aws ecr create-repository --repository-name react-bank-game --region us-west-2
 ```bash
 # Linux/MacOS
 AWS_REGION=us-west-2 && AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text) && ECR_REPOSITORY=react-bank-game && aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+docker tag react-bank-game:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
+docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
 
 # Windows
 $AWS_REGION="us-west-2"; $AWS_ACCOUNT_ID=(aws sts get-caller-identity --query Account --output text); $ECR_REPOSITORY="react-bank-game"; aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com"
+docker tag react-bank-game:latest "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY`:latest"
+docker push "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY`:latest"
 
-# Tag and push image
-docker tag react-bank-game:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
-docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
 ```
 
 ## Step 4: Create ECS Cluster
