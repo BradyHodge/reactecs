@@ -53,7 +53,6 @@ aws configure set aws_session_token "your-session-token"
 aws --version
 aws sts get-caller-identity
 docker --version
-docker run hello-world
 ```
 
 ## Step 1: Create Docker Configuration Files
