@@ -48,7 +48,9 @@ sudo usermod -aG docker $USER
 ### Configure AWS Credentials
 
 ```bash
-aws configure
+aws configure set aws_access_key_id "your-access-key-id"
+aws configure set aws_secret_access_key "your-secret-access-key"
+aws configure set aws_session_token "your-session-token"
 ```
 
 Enter your AWS Access Key ID, Secret Access Key, Default region (e.g., us-west-2), and Default output format (json).
