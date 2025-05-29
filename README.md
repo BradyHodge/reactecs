@@ -1,4 +1,3 @@
-# Complete AWS ECS Deployment Guide for React Application
 
 ## Prerequisites: Install Required Tools
 
