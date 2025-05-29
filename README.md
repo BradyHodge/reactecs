@@ -162,13 +162,11 @@ aws ecr create-repository --repository-name react-bank-game --region us-west-2
 ### 3.2 Push to ECR
 
 ```bash
-# Set variables
-AWS_REGION=us-west-2
-AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-ECR_REPOSITORY=react-bank-game
+# Linux/MacOS
+AWS_REGION=us-west-2 && AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text) && ECR_REPOSITORY=react-bank-game && aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
 
-# Authenticate Docker to ECR
-aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+# Windows
+$AWS_REGION="us-west-2"; $AWS_ACCOUNT_ID=(aws sts get-caller-identity --query Account --output text); $ECR_REPOSITORY="react-bank-game"; aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com"
 
 # Tag and push image
 docker tag react-bank-game:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
